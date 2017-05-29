@@ -8,3 +8,16 @@
     messagingSenderId: "216382304423"
   };
   firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  //adds books to list
+  $('#add-book-btn').on('click', function(event) {
+  event.preventDefault();
+
+  var newBook = $('#book-name-input').val().trim();
+  var bookLength = $('#length-input').val().trim();
+  var pagesPerDay = $('#pages-input').val().trim();
+
+
+});
