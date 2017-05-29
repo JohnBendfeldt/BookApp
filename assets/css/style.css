@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	background-image: url('../images/bookbg.jpg');
+	background-size: 100%;
+}
+/*establishes content behavior*/
+#container {
+	width: 85%;
+	max-width: 980px;
+	margin: 50px auto;
+	position: relative;
+	height: 800px;
+}
+
+header {
+	background-color: #F2F2F2;
+	border-radius: 5px;
+	border: 1px solid #666972;
+}
+
+h1 {
+	font-family: 'Oswald', sans-serif;
+	color: #81614A;
+	text-shadow:
+			-1px -1px 0 #000,  
+    		1px -1px 0 #000,
+    		-1px 1px 0 #000,
+     		1px 1px 0 #000;
+	font-size: 72px;
+	font-weight: 900;
+	margin: 4px auto;
+}
+
+section {
+	border: 1px solid #666972;
+	border-radius: 5px;
+	margin: 5% auto;
+	background-color: #F2F2F2;
+}
+
+button {
+	background-color: #81614A;
+	color: #000;
+    font-size: 24px;
+    font-weight: 900;
+    margin: 1% 4%;
+	border-radius: 5px;
+}
+
+h2 {
+	font-size: 30px;
+	margin: 0px auto;
+	background-color: #000;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+/* making the sections contents fit nicely */
+table {
+	margin: 1% 4%;
+	/*makes sure names are capitalized no matter how they were added*/
+	text-transform: capitalize;
+}
+
+thead {
+	background-color: #81614A;
+	color: #FFFFFF;
+}
+
+th {
+	width: 10%;
+	font-size: 20px;
+	letter-spacing: .05em;
+}
+
+td,
+th,
+table,
+thead {
+	border: 1px solid #FFFFFF;
+}
+
+form {
+	text-align: left;
+	margin: 2% auto;
+}
+
+label {
+	margin: 1% 4%;
+}
+
+input {
+	width: 90%;
+	margin: 1% 4%;
+	border-radius: 5px;
+}
