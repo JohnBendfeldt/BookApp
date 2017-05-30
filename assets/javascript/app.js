@@ -1,3 +1,4 @@
+$(document).ready(function() {
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAWZf9g3SKBLeJP10gjBxfeDwbrfKaTRQY",
@@ -14,10 +15,46 @@
   //adds books to list
   $('#add-book-btn').on('click', function(event) {
   event.preventDefault();
+  console.log('This is my book!')
 
-  var newBook = $('#book-name-input').val().trim();
+  var firstBook = $('#book-name-input').val().trim();
   var bookLength = $('#length-input').val().trim();
   var pagesPerDay = $('#pages-input').val().trim();
 
+  console.log(firstBook);
+  console.log(bookLength);
+  console.log(pagesPerDay);
+
+  var newBook = {
+  	dBfirstBook: firstBook,
+  	dBbookLength: bookLength,
+  	dBpagesPerDay: pagesPerDay,
+  };
+
+ database.ref().push(newBook);
+
+ $('#book-name-input').val('');
+ $('#length-input').val('');
+ $('#pages-input').val('');
+
+ //establishes day book was started
+  var currentTime = moment().utc();
+
+});
+
+
+//creates child in database and creates row with input
+database.ref().on('child_added', function(childSnapshot, prevChildKey) {
+  //establishes childSnapshot variables
+  var cSfirstBook = childSnapshot.val().dBfirstBook;
+  var cSbookLength = childSnapshot.val().dBbookLength;
+  var cSpagesPerDay = childSnapshot.val().dBpagesPerDay;
+  var cStimeStart = childSnapshot.val().currentTime;
+  
+
+  var daysCompletion = (cSbookLength / cSpagesPerDay);
+  //append book data to the table
+  $('table > tbody').append('<tr><td>' + cSfirstBook + '</td><td>' + cStimeStart + '</td><td>' + cSbookLength + '</td><td>' + cSpagesPerDay +'</td><td>' + daysCompletion + '</td><td>');
+})
 
 });
