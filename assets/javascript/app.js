@@ -11,7 +11,7 @@ $(document).ready(function() {
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
+  var currentTime;
   //adds books to list
   $('#add-book-btn').on('click', function(event) {
   event.preventDefault();
@@ -20,6 +20,8 @@ $(document).ready(function() {
   var firstBook = $('#book-name-input').val().trim();
   var bookLength = $('#length-input').val().trim();
   var pagesPerDay = $('#pages-input').val().trim();
+  //establishes day book was started
+  currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 
   console.log(firstBook);
   console.log(bookLength);
@@ -29,6 +31,7 @@ $(document).ready(function() {
   	dBfirstBook: firstBook,
   	dBbookLength: bookLength,
   	dBpagesPerDay: pagesPerDay,
+  	dBcurrentTime: currentTime
   };
 
  database.ref().push(newBook);
@@ -37,8 +40,7 @@ $(document).ready(function() {
  $('#length-input').val('');
  $('#pages-input').val('');
 
- //establishes day book was started
-  var currentTime = moment().utc();
+ 
 
 });
 
@@ -49,12 +51,12 @@ database.ref().on('child_added', function(childSnapshot, prevChildKey) {
   var cSfirstBook = childSnapshot.val().dBfirstBook;
   var cSbookLength = childSnapshot.val().dBbookLength;
   var cSpagesPerDay = childSnapshot.val().dBpagesPerDay;
-  var cStimeStart = childSnapshot.val().currentTime;
-  
+  var cScurrentTime = childSnapshot.val().dBcurrentTime;
 
   var daysCompletion = (cSbookLength / cSpagesPerDay);
+  
   //append book data to the table
-  $('table > tbody').append('<tr><td>' + cSfirstBook + '</td><td>' + cStimeStart + '</td><td>' + cSbookLength + '</td><td>' + cSpagesPerDay +'</td><td>' + daysCompletion + '</td><td>');
+  $('table > tbody').append('<tr><td>' + cSfirstBook + '</td><td>' + cScurrentTime + '</td><td>' + cSbookLength + '</td><td>' + cSpagesPerDay +'</td><td>' + daysCompletion + '</td><td>');
 })
 
 });
