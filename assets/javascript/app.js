@@ -53,10 +53,16 @@ database.ref().on('child_added', function(childSnapshot, prevChildKey) {
   var cSpagesPerDay = childSnapshot.val().dBpagesPerDay;
   var cScurrentTime = childSnapshot.val().dBcurrentTime;
 
-  var daysCompletion = (cSbookLength / cSpagesPerDay);
+    var daysCompletion = (cSbookLength / cSpagesPerDay);
   
   //append book data to the table
-  $('table > tbody').append('<tr><td>' + cSfirstBook + '</td><td>' + cScurrentTime + '</td><td>' + cSbookLength + '</td><td>' + cSpagesPerDay +'</td><td>' + daysCompletion + '</td><td>');
-})
+  $('table > tbody').append('<tr><td>' + cSfirstBook + '</td><td>' + cScurrentTime + '</td><td>' + cSbookLength + '</td><td>' + cSpagesPerDay +'</td><td>' + daysCompletion + '</td><td>' + '<input id="location-input" type="number" placeholder="Current page">' + '</td><td>' + '<button class="btn btn-danger remove-btn">X</button>' + '</td><td>');
+});
 
+
+$(document).on("click", ".remove-btn", function(){
+        //removes the item from the html table
+        $(this).closest('tr').remove();
+        //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
+    });
 });
